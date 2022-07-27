@@ -28,8 +28,10 @@
             <div 
             x-show="open"
             class="origin-top-right absolute right-0 mt-2 w-60 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-              <p class="text-xm text-gray-400 px-4 py-2">email</p>
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+              <p class="text-xm text-gray-400 px-4 py-2">{{ auth()->user()->email }}</p>
+              <a 
+              wire:click="logout"
+              href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
             </div>
           </div>
         </div>

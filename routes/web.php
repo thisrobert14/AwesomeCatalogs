@@ -24,7 +24,7 @@ Route::prefix('catalogs')->group(function () {
     Route::get('/create', [CatalogsController::class, 'listCreateCatalog'])->name('show.create-catalog');
 });
 
-Route::name('authentication')->group(function () {
+Route::name('authentication.')->group(function () {
     Route::get('/login', [AuthenticationController::class, 'showLogin'])->name('login');
     Route::get('/register', [AuthenticationController::class, 'showRegister'])->name('register');
 });
