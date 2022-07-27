@@ -24,19 +24,25 @@
       <div class="mt-5 md:mt-0 md:col-span-2">
         <div class="grid grid-cols-6 gap-6">
           <div class="col-span-6 sm:col-span-3">
-            <label for="first-name" class="block font-medium text-gray-700">Title</label>
-            <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Title of your Catalog">
+            <label for="title" class="block font-medium text-gray-700">Title</label>
+            <input 
+            wire:model="title"
+            type="text" name="title" id="title" autocomplete="title" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Title of your Catalog">
           </div>
 
           <div class="col-span-6 sm:col-span-4">
-            <label for="email-address" class="block  font-medium text-gray-700">Description</label>
-            <textarea rows="4" cols="20" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Describe it..."></textarea>
+            <label for="description" class="block  font-medium text-gray-700">Description</label>
+            <textarea 
+            wire:model="description"
+            rows="4" cols="20" name="description" id="description" autocomplete="description" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Describe it..."></textarea>
           </div>
         </div>
       </div>
     </div>
     <div class="flex justify-end py-2">
-    <button type="submit" class=" w-32 inline-flex justify-center py-3 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
+    <button 
+    wire:click="createCatalog"
+    type="submit" class=" w-32 inline-flex justify-center py-3 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
   </div>
   </div>
 </div>
