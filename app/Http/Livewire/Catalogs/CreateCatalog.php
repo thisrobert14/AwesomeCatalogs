@@ -2,8 +2,9 @@
 
 namespace App\Http\Livewire\Catalogs;
 
-use App\Actions\Catalog\CreateCatalogAction;
 use Livewire\Component;
+use App\DataTransferObjects\CatalogData;
+use App\Actions\Catalog\CreateCatalogAction;
 
 class CreateCatalog extends Component
 {
@@ -18,11 +19,11 @@ class CreateCatalog extends Component
 
     public function createCatalog()
     {
-        $catalog = resolve(CreateCatalogAction::class)->create(
+        $catalog = resolve(CreateCatalogAction::class)->create(new CatalogData(
             title: $this->title,
             description: $this->description,
             author: auth()->user(),
-        );
+        ));
 
         return redirect()->route('show.catalogs');
     }
@@ -32,7 +33,6 @@ class CreateCatalog extends Component
         return [
             'title' => ['required', 'string', 'between:1,255'],
             'description' => ['required', 'string', 'between:1,255'],
-
         ];
     }
 }

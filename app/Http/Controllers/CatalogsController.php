@@ -15,4 +15,9 @@ class CatalogsController extends Controller
     {
         return view('catalogs.create-catalog');
     }
+
+    public function listIndividualCatalogs()
+    {
+        return view('catalogs.individual-catalogs');
+    }
 }
