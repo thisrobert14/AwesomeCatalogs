@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\CatalogsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CatalogsController;
+use App\Http\Controllers\AuthenticationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +22,9 @@ Route::get('/', function () {
 Route::prefix('catalogs')->group(function () {
     Route::get('/', [CatalogsController::class, 'listCatalogs'])->name('show.catalogs');
     Route::get('/create', [CatalogsController::class, 'listCreateCatalog'])->name('show.create-catalog');
+});
 
+Route::name('authentication')->group(function () {
+    Route::get('/login', [AuthenticationController::class, 'showLogin'])->name('login');
+    Route::get('/register', [AuthenticationController::class, 'showRegister'])->name('register');
 });
