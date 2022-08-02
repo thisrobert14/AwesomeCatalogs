@@ -9,7 +9,7 @@ class IndividualCatalogs extends Component
     public function render()
     {
         return view('livewire.catalogs.individual-catalogs', [
-            'catalog' => auth()->user()->catalogs->sortByDesc('created_at')
+            'catalogs' => auth()->user()->catalogs->sortByDesc('created_at')
         ]);
     }
 }

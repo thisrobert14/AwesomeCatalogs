@@ -1,16 +1,26 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Catalogs;
 
 use App\Models\Catalog;
 use Livewire\Component;
 
 class ListCatalog extends Component
 {
-    public function render(Catalog $catalog)
+    public $title;
+
+    public $description;
+
+    public Catalog $catalog;
+
+    public function mount(Catalog $catalog)
     {
-        return view('livewire.catalogs.list-catalog', [
-            'catalog' => $catalog
-        ]);
+        $this->title = $catalog->title;
+        $this->description = $catalog->description;
+    }
+
+    public function render()
+    {
+        return view('livewire.catalogs.list-catalog');
     }
 }

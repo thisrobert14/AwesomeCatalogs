@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Catalog;
 use Illuminate\Http\Request;
 
 class CatalogsController extends Controller
@@ -21,8 +22,10 @@ class CatalogsController extends Controller
         return view('catalogs.individual-catalogs');
     }
 
-    public function listCatalog()
+    public function listCatalog(Catalog $catalog)
     {
-        return view('catalogs.list-catalog');
+        return view('catalogs.list-catalog', [
+            'catalog' => $catalog
+        ]);
     }
 }
