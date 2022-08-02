@@ -17,6 +17,19 @@
 
 <body class="h-full">
     <div class="bg-white">
+        @auth 
+        <div class="max-w-7xl mx-auto text-center py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+            <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                <span class="block">Ready?</span>
+                <span class="block">See the Catalog's list for today.</span>
+            </h2>
+            <div class="mt-8 flex justify-center">
+                <div class="inline-flex rounded-md shadow">
+                    <a href="{{ route('show.catalogs') }}" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"> Go check </a>
+                </div>
+            </div>
+        </div>
+        @else
         <div class="max-w-7xl mx-auto text-center py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
             <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                 <span class="block">Ready to dive in?</span>
@@ -24,13 +37,14 @@
             </h2>
             <div class="mt-8 flex justify-center">
                 <div class="inline-flex rounded-md shadow">
-                    <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"> Log In </a>
+                    <a href="{{ route('authentication.login') }}" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"> Log In </a>
                 </div>
                 <div class="ml-3 inline-flex">
-                    <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200"> Register </a>
+                    <a href="{{ route('authentication.register') }}" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200"> Register </a>
                 </div>
             </div>
         </div>
+        @endauth
     </div>
     @livewireScripts
 </body>

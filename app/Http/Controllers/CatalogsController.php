@@ -20,4 +20,9 @@ class CatalogsController extends Controller
     {
         return view('catalogs.individual-catalogs');
     }
+
+    public function listCatalog()
+    {
+        return view('catalogs.list-catalog');
+    }
 }
