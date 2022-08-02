@@ -23,7 +23,7 @@
     <div class="mt-12">
       <div class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
         <div>
-          <label for="first-name" class="block text-sm font-medium text-gray-700">Your catalog's title:</label>
+          <label for="title" class="block text-sm font-medium text-gray-700">Your catalog's title:</label>
           <div class="mt-1">
             <input 
             wire:model="title"
@@ -42,10 +42,18 @@
         </div>
    
         <div class="sm:col-span-2 flex justify-between items-center">
-        <button type="submit" class="w-32 inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
-        <button type="submit" class="w-32 inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">Delete</button>
+        <button wire:click="showUpdateCatalogModal" type="submit" class="w-32 inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-500 hover:bg-indigo-600 ">Update</button>
+        <button wire:click="showDeleteCatalogModal" type="button" class="w-32 inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-600 hover:bg-red-700 ">Delete</button>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+@if($this->updateCatalogModalVisible)
+  @livewire('catalogs.update-catalog-modal')
+@endif
+
+@if($this->deleteCatalogModalVisible)
+    @livewire('catalogs.delete-catalog-modal')
+@endif
