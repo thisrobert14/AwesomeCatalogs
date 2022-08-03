@@ -28,4 +28,18 @@ class CatalogsController extends Controller
             'catalog' => $catalog
         ]);
     }
+
+    public function listUpdate(Catalog $catalog)
+    {
+        return view('catalogs.update-catalog', [
+            'catalog' => $catalog
+        ]);
+    }
+
+    public function listDelete(Catalog $catalog)
+    {
+        return view('catalogs.delete-catalog', [
+            'catalog' => $catalog
+        ]);
+    }
 }

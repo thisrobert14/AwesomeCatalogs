@@ -15,7 +15,9 @@ use App\Http\Controllers\AuthenticationController;
 |
 */
 
-Route::get('/', function () {return view('home');});
+Route::get('/', function () {
+    return view('home');
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::prefix('catalogs')->group(function () {
@@ -23,6 +25,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/individual', [CatalogsController::class, 'listIndividualCatalogs'])->name('show.individual-catalogs');
         Route::get('/create', [CatalogsController::class, 'listCreateCatalog'])->name('show.create-catalog');
         Route::get('/{catalog}', [CatalogsController::class, 'listCatalog'])->name('show.catalog');
+        Route::get('/update/{catalog}', [CatalogsController::class, 'listUpdate'])->name('show.update-catalog');
+        Route::get('/delete/{catalog}', [CatalogsController::class, 'listDelete'])->name('show.delete-catalog');
     });
 });
 
@@ -32,5 +36,3 @@ Route::middleware(['guest'])->group(function () {
         Route::get('/register', [AuthenticationController::class, 'showRegister'])->name('register');
     });
 });
-
-

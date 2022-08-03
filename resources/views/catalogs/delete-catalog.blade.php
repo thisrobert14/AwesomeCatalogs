@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-@livewire('catalogs.list-catalog', [
+@livewire('catalogs.delete-catalog', [
 'catalog' => $catalog
 ])
 @endsection

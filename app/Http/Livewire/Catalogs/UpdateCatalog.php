@@ -2,11 +2,12 @@
 
 namespace App\Http\Livewire\Catalogs;
 
-use App\DataTransferObjects\CatalogData;
 use App\Models\Catalog;
 use Livewire\Component;
+use App\DataTransferObjects\CatalogData;
+use App\Actions\Catalog\UpdateCatalogAction;
 
-class UpdateCatalogModal extends Component
+class UpdateCatalog extends Component
 {
     public $title;
 
@@ -20,22 +21,22 @@ class UpdateCatalogModal extends Component
         $this->title = $catalog->title;
         $this->description = $catalog->description;
     }
+
     public function render()
     {
-        return view('livewire.catalogs.update-catalog-modal');
+        return view('livewire.catalogs.update-catalog');
     }
 
-    public function update()
+    public function updateCatalog()
     {
         $this->validate();
 
-        $catalog = resolve(UpdateCatalogModal::class)->update($this->catalog, new CatalogData(
+        $this->catalog = resolve(UpdateCatalogAction::class)->update($this->catalog, new CatalogData(
             title: $this->title,
             description: $this->description,
-            author: auth()->user,
+            author: auth()->user(),
         ));
-
-        $this->emit('closeUpdateCatalogModal');
+        return redirect()->route('show.catalogs');
     }
 
     public function rules(): array

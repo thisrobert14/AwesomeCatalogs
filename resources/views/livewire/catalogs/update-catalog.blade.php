@@ -16,21 +16,16 @@
             </defs>
             <rect width="404" height="404" fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)" />
         </svg>
-        @if (auth()->user() == $catalog->author)
         <div class="text-center">
-            <p class="mt-4 text-lg leading-6 text-gray-500">Here you can just see your Catalog</p>
+            <h2 class="text-2xl font-extrabold tracking-tight text-gray-800 sm:text-4xl">Change?</h2>
+            <p class="mt-4 text-lg leading-6 text-gray-500">Here you can edit or delete your Catalog</p>
         </div>
-        @else
-        <div class="text-center">
-            <p class="mt-4 text-lg leading-6 text-gray-500">Here you can just see the Catalog</p>
-        </div>
-        @endif
         <div class="mt-12">
             <div class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                 <div>
                     <label for="title" class="block text-sm font-medium text-gray-700">Your catalog's title:</label>
                     <div class="mt-1">
-                        <input wire:model="title" type="text" name="title" disabled class="py-3 px-4 block text-gray-500 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
+                        <input wire:model="title" type="text" name="title" class="py-3 px-4 block text-gray-900 w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
                     </div>
                 </div>
 
@@ -39,15 +34,14 @@
                     <label for="message" class="block text-sm font-medium text-gray-700">Your catalog's
                         description</label>
                     <div class="mt-1">
-                        <textarea wire:model="description" id="message" name="description" disabled rows="4" class="py-3 px-4 block w-full text-gray-500 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border border-gray-300 rounded-md">{{ $catalog->description }}</textarea>
+                        <textarea wire:model="description" id="message" name="description" rows="4" class="py-3 px-4 block w-full text-gray-900 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border border-gray-300 rounded-md">{{ $catalog->description }}</textarea>
                     </div>
                 </div>
-                @if (auth()->user() == $catalog->author)
-                <div class="sm:col-span-2">
-                    <a href="{{ route('show.update-catalog', ['catalog' => $catalog->id]) }}"><button type="button" class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-500 hover:bg-indigo-600 ">Go update</button></a>
+
+                <div class="sm:col-span-2 flex justify-between items-center">
+                    <button wire:click="updateCatalog" type="button" class="w-32 inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-500 hover:bg-indigo-600 ">Update</button>
+                    <a href="{{ route('show.delete-catalog', ['catalog' => $catalog->id]) }}"><button type="button" class="w-32 inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-600 hover:bg-red-700 ">Delete</button></a>
                 </div>
-                @else
-                @endif
             </div>
         </div>
     </div>
