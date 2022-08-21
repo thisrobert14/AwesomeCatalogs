@@ -62,7 +62,11 @@
                 <tr>
                     <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Resources</th>
                     <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Description</th>
-                    <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                    
+                    <th scope="col" class="relative py-3.5 pl-2 pr-1 sm:pr-6">
+                        <span class="sr-only">Select</span>
+                    </th>
+                    <th scope="col" class="relative py-3.5 pl-2 pr-1 sm:pr-6">
                         <span class="sr-only">Select</span>
                     </th>
                 </tr>
@@ -75,8 +79,15 @@
 
                     </td>
                     <td class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell">{{ $resource->description }}</td>
-                    <td class="relative py-3.5 pl-3 pr-4 sm:pr-6 text-right text-sm font-medium">
-                        <button type="button" class="inline-flex items-center rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Go see</button>
+                    <td class="relative py-3.5 pl-2 pr-1 sm:pr-6 text-right text-sm font-medium">
+                        <button 
+                        wire:click="showUpdateResourceModal"
+                        type="button" class="inline-flex items-center rounded-md border border-gray-300 bg-blue-100 px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Update</button>
+                    </td>
+                    <td class="relative py-3.5 pl-2 pr-1 sm:pr-6 text-right text-sm font-medium">
+                        <button 
+                        wire:click="showDeleteResourceModal"
+                        type="button" class="inline-flex items-center rounded-md border border-gray-300 bg-red-100 px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Delete</button>
                     </td>
                 </tr>
             </tbody>
@@ -98,6 +109,19 @@
     @if($deleteCatalogModalVisible)
         @livewire('catalogs.delete-catalog-modal', [
             'catalog' => $catalog,
+        ])
+    @endif
+
+    @if($this->updateResourceModalVisible)
+        @livewire('resources.update-resource-modal', [
+            'resource' => $resource,
+            'catalog' => $catalog,
+        ])
+    @endif
+
+    @if($deleteResourceModalVisible)
+        @livewire('resources.delete-resource-modal', [
+            'resource' => $resource 
         ])
     @endif
 </div>

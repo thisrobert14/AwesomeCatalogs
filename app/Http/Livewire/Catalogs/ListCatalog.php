@@ -13,13 +13,17 @@ class ListCatalog extends Component
 
     public bool $deleteCatalogModalVisible = false;
 
-    public bool $removeCatalogModalVisible = false;
+    public bool $deleteResourceModalVisible = false;
+
+    public bool $updateResourceModalVisible = false;
 
     protected $listeners = [
         'catalogResourceCreated' => 'catalogResourceCreated',
         'closeCreateCatalogResourceModal' => 'closeCreateCatalogResourceModal',
         'closeUpdateCatalogModal' => 'closeUpdateCatalogModal',
         'closeDeleteCatalogModal' => 'closeDeleteCatalogModal',
+        'closeUpdateResourceModal' => 'closeUpdateResourceModal',
+        'closeDeleteResourceModal' => 'closeDeleteResourceModal',
     ];
 
     public $title;
@@ -73,5 +77,25 @@ class ListCatalog extends Component
     public function closeDeleteCatalogModal(): void
     {
         $this->deleteCatalogModalVisible = false;
+    }
+
+    public function showUpdateResourceModal(): void
+    {
+        $this->updateResourceModalVisible = true;
+    }
+
+    public function closeUpdateResourceModal(): void
+    {
+        $this->updateResourceModalVisible = false;
+    }
+
+    public function showDeleteResourceModal(): void
+    {
+        $this->deleteResourceModalVisible = true;
+    }
+
+    public function closeDeleteResourceModal(): void
+    {
+        $this->deleteResourceModalVisible = false;
     }
 }
