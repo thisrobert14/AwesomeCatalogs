@@ -7,13 +7,13 @@ use Livewire\Component;
 use App\DataTransferObjects\CatalogData;
 use App\Actions\Catalog\UpdateCatalogAction;
 
-class UpdateCatalog extends Component
+class UpdateCatalogModal extends Component
 {
-    public $title;
-
-    public $description;
-
     public Catalog $catalog;
+
+    public string $title = '';
+
+    public string $description = '';
 
     public function mount(Catalog $catalog)
     {
@@ -24,26 +24,27 @@ class UpdateCatalog extends Component
 
     public function render()
     {
-        return view('livewire.catalogs.update-catalog');
+        return view('livewire.catalogs.update-catalog-modal');
     }
 
     public function updateCatalog()
     {
         $this->validate();
 
-        $this->catalog = resolve(UpdateCatalogAction::class)->update($this->catalog, new CatalogData(
+        resolve(UpdateCatalogAction::class)->update($this->catalog, new CatalogData(
             title: $this->title,
             description: $this->description,
-            author: auth()->user(),
+            author: auth()->user()
         ));
-        return redirect()->route('show.catalogs');
+
+        $this->emit('closeUpdateCatalogModal');
     }
 
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string', 'between:1,255'],
-            'description' => ['required', 'string', 'between:1,255'],
+            'title' => ['required', 'string', 'between:2,255'],
+            'description' => ['required', 'string', 'between:2,255'],
         ];
     }
 }

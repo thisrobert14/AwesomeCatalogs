@@ -23,10 +23,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('catalogs')->group(function () {
         Route::get('/', [CatalogsController::class, 'listCatalogs'])->name('show.catalogs');
         Route::get('/individual', [CatalogsController::class, 'listIndividualCatalogs'])->name('show.individual-catalogs');
-        Route::get('/create', [CatalogsController::class, 'listCreateCatalog'])->name('show.create-catalog');
         Route::get('/{catalog}', [CatalogsController::class, 'listCatalog'])->name('show.catalog');
-        Route::get('/update/{catalog}', [CatalogsController::class, 'listUpdate'])->name('show.update-catalog');
-        Route::get('/delete/{catalog}', [CatalogsController::class, 'listDelete'])->name('show.delete-catalog');
     });
 });
 

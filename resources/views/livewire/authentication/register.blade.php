@@ -24,7 +24,7 @@
         </h2>
         <p class="mt-2 text-center text-sm text-gray-600">
             Or
-            <a href="#" class="font-medium text-blue-600 hover:text-blue-500">
+            <a href="{{ route('authentication.login') }}" class="font-medium text-blue-600 hover:text-blue-500">
                 Log in
             </a>
             if you already have one

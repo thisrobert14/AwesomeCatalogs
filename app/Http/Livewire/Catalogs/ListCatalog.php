@@ -2,13 +2,22 @@
 
 namespace App\Http\Livewire\Catalogs;
 
-use App\Actions\Catalog\UpdateCatalogAction;
 use App\Models\Catalog;
 use Livewire\Component;
-use App\DataTransferObjects\CatalogData;
 
 class ListCatalog extends Component
 {
+    public bool $createCatalogResourceModalVisible = false;
+
+    public bool $updateCatalogModalVisible = false;
+
+    protected $listeners = [
+        'catalogResourceCreated' => 'catalogResourceCreated',
+        'closeCreateCatalogResourceModal' => 'closeCreateCatalogResourceModal',
+        'closeUpdateCatalogModal' => 'closeUpdateCatalogModal',
+
+    ];
+
     public $title;
 
     public $description;
@@ -25,5 +34,30 @@ class ListCatalog extends Component
     public function render()
     {
         return view('livewire.catalogs.list-catalog');
+    }
+
+    public function showCreateCatalogResourceModal(): void
+    {
+        $this->createCatalogResourceModalVisible = true;
+    }
+
+    public function closeCreateCatalogResourceModal(): void
+    {
+        $this->createCatalogResourceModalVisible = false;
+    }
+
+    public function catalogResourceCreated(): void
+    {
+        $this->createCatalogResourceModalVisible = false;
+    }
+
+    public function showUpdateCatalogModal(): void
+    {
+        $this->updateCatalogModalVisible = true;
+    }
+
+    public function closeUpdateCatalogModal(): void
+    {
+        $this->updateCatalogModalVisible = false;
     }
 }
