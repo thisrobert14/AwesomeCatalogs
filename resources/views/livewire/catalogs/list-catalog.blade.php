@@ -39,7 +39,9 @@
                         </li>
 
                         <li class="text-gray-900  select-none relative p-4 text-sm bg-pink-100 hover:bg-pink-200" id="listbox-option-0" role="option">
-                            <div class="flex flex-col cursor-pointer ">
+                            <div 
+                            wire:click="showDeleteCatalogModal"
+                            class="flex flex-col cursor-pointer ">
                                 <div class="flex justify-between">
                                     <p class="font-normal">Delete</p>
                                 </div>
@@ -89,6 +91,12 @@
 
     @if($updateCatalogModalVisible)
         @livewire('catalogs.update-catalog-modal', [
+            'catalog' => $catalog,
+        ])
+    @endif
+
+    @if($deleteCatalogModalVisible)
+        @livewire('catalogs.delete-catalog-modal', [
             'catalog' => $catalog,
         ])
     @endif
