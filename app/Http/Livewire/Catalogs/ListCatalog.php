@@ -13,6 +13,8 @@ class ListCatalog extends Component
 
     public bool $deleteCatalogModalVisible = false;
 
+    public bool $removeCatalogModalVisible = false;
+
     protected $listeners = [
         'catalogResourceCreated' => 'catalogResourceCreated',
         'closeCreateCatalogResourceModal' => 'closeCreateCatalogResourceModal',
@@ -72,6 +74,4 @@ class ListCatalog extends Component
     {
         $this->deleteCatalogModalVisible = false;
     }
-
-   
 }

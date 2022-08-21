@@ -10,7 +10,7 @@ class DeleteCatalogModal extends Component
 {
     public Catalog $catalog;
 
-    public bool $confirmDelete = false;
+    public bool $removeCatalogModalVisible = false;
 
 
     public function render()
@@ -18,14 +18,14 @@ class DeleteCatalogModal extends Component
         return view('livewire.catalogs.delete-catalog-modal');
     }
 
-    public function showConfirmationDeleteCatalogModal(): void
+    public function showRemoveCatalogModal(): void
     {
-        $this->confirmDelete = true;
+         $this->removeCatalogModalVisible = true;
     }
-
-    public function closeConfirmationDeleteCatalogModal(): void
+ 
+    public function closeRemoveCatalogModal(): void
     {
-        $this->confirmDelete = false;
+         $this->removeCatalogModalVisible = false;
     }
 
     public function deleteCatalog()
