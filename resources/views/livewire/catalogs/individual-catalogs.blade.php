@@ -17,9 +17,6 @@
                 <tr>
                   <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Title</th>
                   <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Description</th>
-                  <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                    <span class="sr-only">Edit</span>
-                  </th>
                 </tr>
               </thead>
               @foreach($catalogs as $catalog)
@@ -27,9 +24,6 @@
                 <tr>
                   <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><a href="{{ route('show.catalog', ['catalog' => $catalog->id]) }}" class="rounded-xl hover:bg-gray-100 px-2 py-2">{{ ucfirst($catalog->title)}}</a></td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $catalog->description }}</td>
-                  <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                  <a href="{{ route('show.catalog', ['catalog' => $catalog->id]) }}" class="text-indigo-600 hover:text-indigo-900">View</a>
-                  </td>
                 </tr>
               </tbody>
               @endforeach

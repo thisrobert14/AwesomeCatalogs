@@ -8,6 +8,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -48,5 +49,10 @@ class User extends Authenticatable
     public function catalogs(): HasMany
     {
         return $this->hasMany(Catalog::class, 'author_id');
+    }
+
+    public function stars(): BelongsToMany
+    {
+        return $this->belongsToMany(Catalog::class, 'catalog_user_stars');
     }
 }

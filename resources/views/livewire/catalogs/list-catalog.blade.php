@@ -52,8 +52,26 @@
                     </ul>
                 </div>
             </div>
+            
 
-
+        </div>
+        <div class="flex items-center bg-gray-200 px-3 py-2 ml-4 space-x-2 rounded-xl">
+            <button
+            wire:click.prevent="star"
+            >
+            <svg class="flex-shrink-0 h-5 w-5 
+            @if($hasStared) text-yellow-400
+            @endif
+            text-gray-500 hover:text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+            </svg>
+            </button>
+            <div class="
+            @if($hasStared) text-yellow-400
+            @endif
+            ">
+                {{ $starsCount }}
+            </div>
         </div>
     </div>
     <div class="-mx-4 mt-10 ring-1 ring-gray-300 sm:-mx-6 md:mx-0 md:rounded-lg">
@@ -74,14 +92,13 @@
             @foreach($catalog->resources as $resource)
             <tbody>
                 <tr>
-                    <td class="relative py-4 pl-4 sm:pl-6 pr-3 text-sm">
-                        <div class="font-medium text-gray-900">{{ $resource->title }}</div>
-
+                    <td class="relative py-4 pl-4 sm:pl-6  pr-3 text-sm">
+                       <a href="{{ route('show.resource', ['resource' => $resource->id]) }}"><div class="font-medium text-gray-900">{{ $resource->title }}</div></a>
                     </td>
                     <td class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell">{{ $resource->description }}</td>
                     <td class="relative py-3.5 pl-2 pr-1 sm:pr-6 text-right text-sm font-medium">
                         <button 
-                        wire:click="showUpdateResourceModal"
+                        wire:click="showUpdateResourceModal('{{ $resource->id }}')"
                         type="button" class="inline-flex items-center rounded-md border border-gray-300 bg-blue-100 px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Update</button>
                     </td>
                     <td class="relative py-3.5 pl-2 pr-1 sm:pr-6 text-right text-sm font-medium">
@@ -112,9 +129,9 @@
         ])
     @endif
 
-    @if($this->updateResourceModalVisible)
+    @if($resourceToBeUpdated)
         @livewire('resources.update-resource-modal', [
-            'resource' => $resource,
+            'resource' => $resourceToBeUpdated,
             'catalog' => $catalog,
         ])
     @endif

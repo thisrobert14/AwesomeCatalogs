@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Catalogs;
 
 use App\Models\Catalog;
+use App\Models\Resource;
 use Livewire\Component;
 
 class ListCatalog extends Component
@@ -15,7 +16,7 @@ class ListCatalog extends Component
 
     public bool $deleteResourceModalVisible = false;
 
-    public bool $updateResourceModalVisible = false;
+    public ?Resource $resourceToBeUpdated = null;
 
     protected $listeners = [
         'catalogResourceCreated' => 'catalogResourceCreated',
@@ -32,11 +33,17 @@ class ListCatalog extends Component
 
     public Catalog $catalog;
 
-    public function mount(Catalog $catalog)
+    public $starsCount;
+
+    public $hasStared;
+
+    public function mount(Catalog $catalog, $starsCount)
     {
         $this->catalog = $catalog;
         $this->title = $catalog->title;
         $this->description = $catalog->description;
+        $this->starsCount = $starsCount;
+        $this->hasStared = $catalog->isStaredByUser(auth()->user());
     }
 
     public function render()
@@ -79,14 +86,14 @@ class ListCatalog extends Component
         $this->deleteCatalogModalVisible = false;
     }
 
-    public function showUpdateResourceModal(): void
+    public function showUpdateResourceModal(string $resourceId): void
     {
-        $this->updateResourceModalVisible = true;
+        $this->resourceToBeUpdated = Resource::find($resourceId);
     }
 
     public function closeUpdateResourceModal(): void
     {
-        $this->updateResourceModalVisible = false;
+        $this->resourceToBeUpdated = null;
     }
 
     public function showDeleteResourceModal(): void
@@ -97,5 +104,18 @@ class ListCatalog extends Component
     public function closeDeleteResourceModal(): void
     {
         $this->deleteResourceModalVisible = false;
+    }
+
+    public function star()
+    {
+        if ($this->hasStared) {
+            $this->catalog->removeStar(auth()->user());
+            $this->starsCount--;
+            $this->hasStared = false;
+        } else {
+            $this->catalog->star(auth()->user());
+            $this->starsCount++;
+            $this->hasStared = true;
+        }
     }
 }

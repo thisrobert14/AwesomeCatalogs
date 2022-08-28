@@ -25,7 +25,8 @@ class CatalogsController extends Controller
     public function listCatalog(Catalog $catalog)
     {
         return view('catalogs.list-catalog', [
-            'catalog' => $catalog
+            'catalog' => $catalog,
+            'starsCount' => $catalog->stars()->count()
         ]);
     }
 

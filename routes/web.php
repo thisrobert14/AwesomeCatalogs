@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CatalogsController;
+use App\Http\Controllers\ResourcesController;
 use App\Http\Controllers\AuthenticationController;
 
 /*
@@ -24,6 +25,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', [CatalogsController::class, 'listCatalogs'])->name('show.catalogs');
         Route::get('/individual', [CatalogsController::class, 'listIndividualCatalogs'])->name('show.individual-catalogs');
         Route::get('/{catalog}', [CatalogsController::class, 'listCatalog'])->name('show.catalog');
+    });
+    Route::prefix('resources')->group(function () {
+        Route::get('/{resource}', [ResourcesController::class, 'listResource'])->name('show.resource');
     });
 });
 
