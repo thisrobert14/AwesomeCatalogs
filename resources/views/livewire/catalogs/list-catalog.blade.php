@@ -5,6 +5,7 @@
             <p class="mt-2 text-sm text-gray-700">{{ $catalog->description }}</p>
         </div>
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+            @if(auth()->user()->id == $catalog->author->id)
             <div>
                 <label id="listbox-label" class="sr-only"> Change published status </label>
                 <div x-data="{ open: false }" class="relative  items-center">
@@ -52,7 +53,7 @@
                     </ul>
                 </div>
             </div>
-            
+            @endif        
 
         </div>
         <div class="flex items-center bg-gray-200 px-3 py-2 ml-4 space-x-2 rounded-xl">
@@ -96,6 +97,7 @@
                        <a href="{{ route('show.resource', ['resource' => $resource->id]) }}"><div class="font-medium text-gray-900">{{ $resource->title }}</div></a>
                     </td>
                     <td class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell">{{ $resource->description }}</td>
+                    @if(auth()->user()->id == $catalog->author->id)
                     <td class="relative py-3.5 pl-2 pr-1 sm:pr-6 text-right text-sm font-medium">
                         <button 
                         wire:click="showUpdateResourceModal('{{ $resource->id }}')"
@@ -106,11 +108,27 @@
                         wire:click="showDeleteResourceModal"
                         type="button" class="inline-flex items-center rounded-md border border-gray-300 bg-red-100 px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Delete</button>
                     </td>
+                    @endif
                 </tr>
             </tbody>
             @endforeach
         </table>
     </div>
+    <div class="flex items-center space-x-3">
+    <button type="button" disabled class="inline-flex items-center rounded-full border border-transparent bg-indigo-500 px-3 py-1.5 text-xs font-medium text-white shadow-sm mt-2">Leave a comment</button>
+    <button 
+    wire:click="showCreateCatalogCommentModal"
+    type="button" class="inline-flex items-center mt-2 rounded-full border border-transparent bg-indigo-500 p-1 text-white shadow-sm hover:bg-indigo-600">
+        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+        </svg>
+    </button>
+    </div>
+
+    @livewire('catalogs.catalog-comments', [
+        'catalog' => $catalog,
+        ])
+
     @if ($createCatalogResourceModalVisible)
         @livewire('catalogs.create-catalog-resource-modal', [
             'catalog' => $catalog,    
@@ -140,5 +158,9 @@
         @livewire('resources.delete-resource-modal', [
             'resource' => $resource 
         ])
+    @endif
+
+    @if($createCatalogCommentModalVisible)
+        @livewire('catalogs.create-catalog-comment-modal')
     @endif
 </div>

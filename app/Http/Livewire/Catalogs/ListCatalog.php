@@ -18,6 +18,8 @@ class ListCatalog extends Component
 
     public ?Resource $resourceToBeUpdated = null;
 
+    public bool $createCatalogCommentModalVisible = false;
+
     protected $listeners = [
         'catalogResourceCreated' => 'catalogResourceCreated',
         'closeCreateCatalogResourceModal' => 'closeCreateCatalogResourceModal',
@@ -25,6 +27,8 @@ class ListCatalog extends Component
         'closeDeleteCatalogModal' => 'closeDeleteCatalogModal',
         'closeUpdateResourceModal' => 'closeUpdateResourceModal',
         'closeDeleteResourceModal' => 'closeDeleteResourceModal',
+        'closeCreateCatalogCommentModal' => 'closeCreateCatalogCommentModal',
+        'commentCreated' => 'commentCreated',
     ];
 
     public $title;
@@ -117,5 +121,20 @@ class ListCatalog extends Component
             $this->starsCount++;
             $this->hasStared = true;
         }
+    }
+
+    public function showCreateCatalogCommentModal(): void
+    {
+        $this->createCatalogCommentModalVisible = true;
+    }
+
+    public function closeCreateCatalogCommentModal(): void
+    {
+        $this->createCatalogCommentModalVisible = false;
+    }
+
+    public function commentCreated(): void
+    {
+        $this->createCatalogCommentModalVisible = false;   
     }
 }

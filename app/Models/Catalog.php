@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Comment;
 use App\Models\Resource;
 use App\Models\CatalogUserStar;
 use Illuminate\Database\Eloquent\Model;
@@ -57,5 +58,10 @@ class Catalog extends Model
         CatalogUserStar::where('catalog_id', $this->id)
             ->where('user_id', $user->id)
             ->delete();
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
     }
 }
