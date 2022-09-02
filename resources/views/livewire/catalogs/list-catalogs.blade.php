@@ -40,6 +40,7 @@
               <tr>
                 <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Title</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Author</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Comments</th>
               </tr>
             </thead>
             @foreach($catalogs as $catalog)
@@ -52,6 +53,7 @@
                 @else
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $catalog->author->email }}</td>
                 @endif
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $catalog->comments()->count() }}</td>
               </tr>
             </tbody>
             @endforeach

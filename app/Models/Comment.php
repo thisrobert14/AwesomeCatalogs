@@ -7,10 +7,11 @@ use App\Models\Catalog;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comment extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $guarded = [];
 
@@ -21,6 +22,6 @@ class Comment extends Model
 
     public function catalog(): BelongsTo
     {
-        return $this->belogsTo(Catalog::class);
+        return $this->belongsTo(Catalog::class);
     }
 }

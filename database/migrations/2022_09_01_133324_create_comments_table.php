@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('owner_id');
             $table->text('body');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('catalog_id')->references('id')->on('catalogs')->onDelete('cascade');
             $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');

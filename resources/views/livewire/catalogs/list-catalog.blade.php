@@ -125,9 +125,13 @@
     </button>
     </div>
 
-    @livewire('catalogs.catalog-comments', [
-        'catalog' => $catalog,
-        ])
+    @if($catalog->comments->count() < 1)
+        <h1 class="mt-10 text-xl bg-red-50 px-2 py-2 rounded-md font-semibold text-gray-500 w-3/4">There are no comments for this catalog now. Be the first person who post one!</h1>
+    @else
+        @livewire('catalogs.catalog-comments', [
+            'catalog' => $catalog,
+            ])
+    @endif
 
     @if ($createCatalogResourceModalVisible)
         @livewire('catalogs.create-catalog-resource-modal', [
@@ -161,6 +165,10 @@
     @endif
 
     @if($createCatalogCommentModalVisible)
-        @livewire('catalogs.create-catalog-comment-modal')
+        @livewire('catalogs.create-catalog-comment-modal', [
+            'catalog' => $catalog,
+        ])
     @endif
+
+   
 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Catalogs;
 
 use App\Actions\Comments\CreateCatalogCommentAction;
+use App\Actions\Comments\DeleteCatalogCommentAction;
 use App\DataTransferObjects\CommentData;
 use App\Models\Catalog;
 use App\Models\User;
@@ -10,7 +11,7 @@ use Livewire\Component;
 
 class CreateCatalogCommentModal extends Component
 {
-    public string $body;
+    public $body;
 
     public Catalog $catalog;
 
@@ -35,6 +36,7 @@ class CreateCatalogCommentModal extends Component
         ));
 
         $this->emit('commentCreated');
+        return redirect()->back();
     }
 
     public function rules(): array
