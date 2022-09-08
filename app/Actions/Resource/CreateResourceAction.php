@@ -13,6 +13,7 @@ class CreateResourceAction
         $resource->title = $data->title;
         $resource->description = $data->description;
         $resource->catalog()->associate($data->catalog);
+        $resource->author()->associate($data->author);
         $resource->save();
 
         return $resource;

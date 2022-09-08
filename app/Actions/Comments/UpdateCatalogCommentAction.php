@@ -10,7 +10,7 @@ class UpdateCatalogCommentAction
     public function update(Comment $comment, CommentData $data): Comment
     {
         $comment->body = $data->body;
-        $comment->catalog()->associate($data->catalog);
+        $comment->commentable()->associate($data->catalog);
         $comment->owner()->associate($data->owner);
         $comment->save();
 

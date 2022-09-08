@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::prefix('resources')->group(function () {
         Route::get('/{resource}', [ResourcesController::class, 'listResource'])->name('show.resource');
+        Route::get('/{resource}/comments/{comment}', [ResourcesController::class, 'listResourceComments'])->name('show.resource-comments');
     });
 });
 

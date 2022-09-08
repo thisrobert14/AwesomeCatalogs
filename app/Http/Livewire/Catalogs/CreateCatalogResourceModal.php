@@ -30,7 +30,8 @@ class CreateCatalogResourceModal extends Component
         $resource = resolve(CreateResourceAction::class)->create(new ResourceData(
             title: $this->title,
             description: $this->description,
-            catalog: $this->catalog
+            catalog: $this->catalog,
+            author: auth()->user(),
         ));
 
         $this->emit('catalogResourceCreated');

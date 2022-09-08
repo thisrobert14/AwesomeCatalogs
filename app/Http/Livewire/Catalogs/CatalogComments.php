@@ -10,8 +10,6 @@ class CatalogComments extends Component
 {
     public Catalog $catalog;
 
-    // public bool $deleteCatalogCommentModalVisible = false;
-
     public ?Comment $commentToBeUpdated = null;
 
     public ?Comment $commentToBeRemoved = null;

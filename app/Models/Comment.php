@@ -20,8 +20,8 @@ class Comment extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function catalog(): BelongsTo
+    public function commentable()
     {
-        return $this->belongsTo(Catalog::class);
+        return $this->morphTo();
     }
 }

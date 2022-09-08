@@ -60,8 +60,8 @@ class Catalog extends Model
             ->delete();
     }
 
-    public function comments(): HasMany
+    public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }

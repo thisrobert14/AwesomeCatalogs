@@ -88,6 +88,9 @@
                     <th scope="col" class="relative py-3.5 pl-2 pr-1 sm:pr-6">
                         <span class="sr-only">Select</span>
                     </th>
+                    <th scope="col" class="relative py-3.5 pl-2 pr-1 sm:pr-6">
+                        <span class="sr-only">Select</span>
+                    </th>
                 </tr>
             </thead>
             @foreach($catalog->resources as $resource)
@@ -109,6 +112,7 @@
                         type="button" class="inline-flex items-center rounded-md border border-gray-300 bg-red-100 px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Delete</button>
                     </td>
                     @endif
+                    <a href="{{ route('show.resource', ['resource' => $resource->id]) }}"><td class="hidden cursor-pointer hover:text-gray-700 px-3 py-3.5 text-sm text-gray-500 lg:table-cell">{{ $resource->comments()->count() }} comments</td></a>
                 </tr>
             </tbody>
             @endforeach
