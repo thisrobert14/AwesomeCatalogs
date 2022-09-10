@@ -14,9 +14,9 @@ class ListCatalog extends Component
 
     public bool $deleteCatalogModalVisible = false;
 
-    public bool $deleteResourceModalVisible = false;
-
     public ?Resource $resourceToBeUpdated = null;
+
+    public ?Resource $resourceToBeRemoved = null;
 
     public bool $createCatalogCommentModalVisible = false;
 
@@ -100,14 +100,14 @@ class ListCatalog extends Component
         $this->resourceToBeUpdated = null;
     }
 
-    public function showDeleteResourceModal(): void
+    public function showDeleteResourceModal(string $resourceId): void
     {
-        $this->deleteResourceModalVisible = true;
+        $this->resourceToBeRemoved = Resource::find($resourceId);
     }
 
     public function closeDeleteResourceModal(): void
     {
-        $this->deleteResourceModalVisible = false;
+        $this->resourceToBeRemoved = null;
     }
 
     public function star()

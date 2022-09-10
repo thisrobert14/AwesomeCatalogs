@@ -38,7 +38,8 @@ class UpdateResourceModal extends Component
         resolve(UpdateResourceAction::class)->update($this->resource, new ResourceData(
             title: $this->title,
             description: $this->description,
-            catalog: $this->catalog
+            catalog: $this->catalog,
+            author: auth()->user()
         ));
 
         $this->emit('closeUpdateResourceModal');

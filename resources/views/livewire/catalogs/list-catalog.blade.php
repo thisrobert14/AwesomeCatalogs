@@ -28,25 +28,25 @@
                         </div>
                     </div>
                     <ul x-show="open" @click.outside="open = false" class="origin-top-right absolute z-10 right-0 mt-2 w-72 rounded-md shadow-lg overflow-hidden bg-white   divide-y divide-gray-200 ring-1 ring-black ring-opacity-5 focus:outline-none" tabindex="-1" role="listbox" aria-labelledby="listbox-label" aria-activedescendant="listbox-option-0">
-                        <li class="text-gray-900 select-none relative p-4 text-sm bg-blue-100 hover:bg-blue-200" id="listbox-option-0" role="option">
+                        <li class="text-gray-100 select-none relative p-4 text-sm bg-blue-300 hover:bg-blue-400" id="listbox-option-0" role="option">
                             <div 
                             wire:click="showUpdateCatalogModal"
                             class="flex flex-col cursor-pointer ">
                                 <div class="flex justify-between ">
                                     <p class="font-normal">Update</p>
                                 </div>
-                                <p class="text-gray-500 mt-2">Here is where you can update your catalog.</p>
+                                <p class="text-gray-100 mt-2">Here is where you can update your catalog.</p>
                             </div>
                         </li>
 
-                        <li class="text-gray-900  select-none relative p-4 text-sm bg-pink-100 hover:bg-pink-200" id="listbox-option-0" role="option">
+                        <li class="text-gray-100  select-none relative p-4 text-sm bg-red-300 hover:bg-red-400" id="listbox-option-0" role="option">
                             <div 
                             wire:click="showDeleteCatalogModal"
                             class="flex flex-col cursor-pointer ">
                                 <div class="flex justify-between">
                                     <p class="font-normal">Delete</p>
                                 </div>
-                                <p class="text-gray-500 mt-2">Here you can delete your catalog.</p>
+                                <p class="text-gray-100 mt-2">Here you can delete your catalog.</p>
                             </div>
                         </li>
 
@@ -104,12 +104,12 @@
                     <td class="relative py-3.5 pl-2 pr-1 sm:pr-6 text-right text-sm font-medium">
                         <button 
                         wire:click="showUpdateResourceModal('{{ $resource->id }}')"
-                        type="button" class="inline-flex items-center rounded-md border border-gray-300 bg-blue-100 px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Update</button>
+                        type="button" class="inline-flex items-center rounded-md border border-gray-300 bg-blue-400 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Update</button>
                     </td>
                     <td class="relative py-3.5 pl-2 pr-1 sm:pr-6 text-right text-sm font-medium">
                         <button 
-                        wire:click="showDeleteResourceModal"
-                        type="button" class="inline-flex items-center rounded-md border border-gray-300 bg-red-100 px-3 py-2 text-sm font-medium leading-4 text-gray-700 shadow-sm hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Delete</button>
+                        wire:click="showDeleteResourceModal('{{ $resource->id }}')"
+                        type="button" class="inline-flex items-center rounded-md border border-gray-300 bg-red-400 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Delete</button>
                     </td>
                     @endif
                     <a href="{{ route('show.resource', ['resource' => $resource->id]) }}"><td class="hidden cursor-pointer hover:text-gray-700 px-3 py-3.5 text-sm text-gray-500 lg:table-cell">{{ $resource->comments()->count() }} comments</td></a>
@@ -157,14 +157,14 @@
 
     @if($resourceToBeUpdated)
         @livewire('resources.update-resource-modal', [
-            'resource' => $resourceToBeUpdated,
             'catalog' => $catalog,
+            'resource' => $resourceToBeUpdated,
         ])
     @endif
 
-    @if($deleteResourceModalVisible)
+    @if($resourceToBeRemoved)
         @livewire('resources.delete-resource-modal', [
-            'resource' => $resource 
+            'resource' => $resourceToBeRemoved
         ])
     @endif
 

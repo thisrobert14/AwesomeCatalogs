@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('catalog_id')->references('id')->on('catalogs')->onDelete('cascade');
