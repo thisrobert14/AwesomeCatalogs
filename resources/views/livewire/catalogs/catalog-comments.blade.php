@@ -8,7 +8,9 @@
         </div>
         <div class="flex-1 py-10">
           <h3 class="font-medium text-gray-900">{{ $comment->owner->first_name}}</h3>
-          <p><time datetime="2021-07-16">{{ $comment->created_at->diffForHumans() }}</time></p>
+          <p><time 
+          wire:poll.2s
+          datetime="2021-07-16">{{ $comment->created_at->diffForHumans() }}</time></p>
 
           <div class="prose prose-sm text-xl mt-4 max-w-none text-gray-700">
             <p>{{ $comment->body }}</p>

@@ -24,6 +24,16 @@
                 />
                 <x-input-error class="mt-1" for="description" description="Write something about it." />
               </div>
+
+              <div class="mt-4">
+              <input type="file" wire:model.defer="photo">
+              @if ($photo)
+              <img src="{{ $photo->temporaryUrl() }}" alt="temp" class="h-24 w-1/4 rounded-xl">
+              @elseif ($catalog->photo)
+              <img src="/storage/{{ $catalog->photo }}" alt="" class="h-24 w-1/4 rounded-xl">
+              @endif
+              <x-input-error class="mt-1" for="photo" />
+              </div>
              
             </div>
           </div>

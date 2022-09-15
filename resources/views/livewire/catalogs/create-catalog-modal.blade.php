@@ -62,6 +62,11 @@
                 />
                 <x-input-error class="mt-1" for="description" description="Write something about your catalog's resource." />
               </div>
+
+              <div class="mt-4">
+              <input type="file" wire:model="photo">
+              <x-input-error class="mt-1" for="photo" />
+              </div>
             </div>
           </div>
         </div>

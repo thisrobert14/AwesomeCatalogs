@@ -12,7 +12,8 @@ class CreateCatalogAction
         $catalog = new Catalog();
         $catalog->title = $data->title;
         $catalog->description = $data->description;
-        $catalog->author()->associate($data->author);
+        $catalog->author()->associate($data->author);        
+        $catalog->photo = $data->photo;
 
         $catalog->save();
 

@@ -136,5 +136,5 @@ class ListCatalog extends Component
     public function commentCreated(): void
     {
         $this->createCatalogCommentModalVisible = false;   
-    }
+    }   
 }

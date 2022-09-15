@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Catalogs;
 
+use App\Models\Photo;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use App\DataTransferObjects\CatalogData;
 use App\DataTransferObjects\ResourceData;
 use App\Actions\Catalog\CreateCatalogAction;
@@ -10,6 +12,8 @@ use App\Actions\Resource\CreateResourceAction;
 
 class CreateCatalogModal extends Component
 {
+    use WithFileUploads;
+
     public $title;
 
     public $description;
@@ -17,6 +21,8 @@ class CreateCatalogModal extends Component
     public $resourceTitle;
 
     public $resourceDescription;
+
+    public $photo;
 
     public function render()
     {
@@ -30,7 +36,8 @@ class CreateCatalogModal extends Component
         $catalog = resolve(CreateCatalogAction::class)->create(new CatalogData(
             title: $this->title,
             description: $this->description,
-            author: auth()->user()
+            author: auth()->user(),
+            photo: $this->photo ? $this->photo->store('photos', 'public') : null
         ));
 
         $resource = resolve(CreateResourceAction::class)->create(new ResourceData(
@@ -41,6 +48,7 @@ class CreateCatalogModal extends Component
         ));
 
         $this->emit('catalogCreated');
+
     }
 
     public function rules(): array

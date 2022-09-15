@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Photo;
 use App\Models\Catalog;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comment extends Model
 {
@@ -24,4 +26,5 @@ class Comment extends Model
     {
         return $this->morphTo();
     }
+
 }

@@ -3,6 +3,7 @@
         <div class="sm:flex-auto">
             <h1 class="text-xl font-semibold text-gray-900">{{ $catalog->title }}</h1>
             <p class="mt-2 text-sm text-gray-700">{{ $catalog->description }}</p>
+            
         </div>
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
             @if(auth()->user()->id == $catalog->author->id)
@@ -129,6 +130,12 @@
     </button>
     </div>
 
+    @if ($catalog->photo)
+            <div class="mt-4">
+                <img src="/storage/{{ $catalog->photo }}" alt="" class="h-64 w-1/3 rounded-xl">
+            </div>
+            @endif
+
     @if($catalog->comments->count() < 1)
         <h1 class="mt-10 text-xl bg-red-50 px-2 py-2 rounded-md font-semibold text-gray-500 w-3/4">There are no comments for this catalog now. Be the first person who post one!</h1>
     @else
@@ -136,6 +143,8 @@
             'catalog' => $catalog,
             ])
     @endif
+
+    
 
     @if ($createCatalogResourceModalVisible)
         @livewire('catalogs.create-catalog-resource-modal', [
