@@ -29,7 +29,7 @@ class DeleteCatalogCommentModal extends Component
     public function deleteComment()
     {
         resolve(DeleteCatalogCommentAction::class)->delete($this->comment);
-        $this->emit('closeDeleteCatalogCommentModal');
+        $this->emit('commentDeleted');
     }
 
     public function showRemoveCatalogCommentModal(): void

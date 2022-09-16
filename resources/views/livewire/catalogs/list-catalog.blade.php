@@ -182,6 +182,4 @@
             'catalog' => $catalog,
         ])
     @endif
-
-   
 </div>

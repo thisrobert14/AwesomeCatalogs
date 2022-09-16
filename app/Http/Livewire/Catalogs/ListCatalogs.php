@@ -34,6 +34,7 @@ class ListCatalogs extends Component
 
     public function catalogCreated(): void
     {
-        $this->createCatalogModalVisible = false;   
+        $this->closeCreateCatalogModal();   
+        $this->notifySuccess('Catalog created!');
     }
 }

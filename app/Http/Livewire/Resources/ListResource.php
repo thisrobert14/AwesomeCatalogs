@@ -23,6 +23,8 @@ class ListResource extends Component
         'closeCreateResourceCommentModal' => 'closeCreateResourceCommentModal',
         'closeDeleteResourceCommentModal' => 'closeDeleteResourceCommentModal',
         'closeUpdateResourceCommentModal' => 'closeUpdateResourceCommentModal',
+        'commentPosted' => 'commentPosted',
+        'commentDeleted' => 'commentDeleted',
     ];
 
     public function mount(Resource $resource)
@@ -53,5 +55,17 @@ class ListResource extends Component
     public function closeDeleteResourceCommentModal(): void
     {
         $this->resourceCommentToBeRemoved = null;
+    }
+
+    public function commentPosted(): void
+    {
+        $this->closeCreateResourceCommentModal();
+        $this->notifySuccess('Comment has been posted!');
+    }
+
+    public function commentDeleted(): void
+    {
+        $this->closeDeleteResourceCommentModal();
+        $this->notifySuccess('Comment deleted!');
     }
 }

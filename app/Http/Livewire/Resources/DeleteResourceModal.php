@@ -25,7 +25,7 @@ class DeleteResourceModal extends Component
     public function deleteResource()
     {
         resolve(DeleteResourceAction::class)->delete($this->resource);
-        $this->emit('closeDeleteResourceModal');
+        $this->emit('resourceDeleted');
     }
 
     public function showRemoveResourceModal(): void

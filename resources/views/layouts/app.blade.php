@@ -32,7 +32,20 @@
   </main>
   </div>
   </div>
+  <x-notifications.toaster />
 
+@if (session()->has('notify'))
+    <script>
+        window.onload = function() {
+            window.dispatchEvent(new CustomEvent('notify', {
+                detail: {
+                    type: "{{ session('notify')['type'] }}",
+                    message: "{!! session('notify')['message'] !!}",
+                }
+            }));
+        }
+    </script>
+@endif
 
   @livewireScripts
 </body>

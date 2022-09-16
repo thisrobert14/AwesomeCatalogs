@@ -3,8 +3,8 @@
 namespace App\Http\Livewire\Catalogs;
 
 use App\Models\Catalog;
-use App\Models\Resource;
 use Livewire\Component;
+use App\Models\Resource;
 
 class ListCatalog extends Component
 {
@@ -29,6 +29,11 @@ class ListCatalog extends Component
         'closeDeleteResourceModal' => 'closeDeleteResourceModal',
         'closeCreateCatalogCommentModal' => 'closeCreateCatalogCommentModal',
         'commentCreated' => 'commentCreated',
+        'catalogUpdated' => 'catalogUpdated',
+        'resourceUpdated' => 'resourceUpdated',
+        'resourceDeleted' => 'resourceDeleted',
+        'catalogDeleted' => 'catalogDeleted',
+        'resourceCreated' => 'resourceCreated',
     ];
 
     public $title;
@@ -135,6 +140,38 @@ class ListCatalog extends Component
 
     public function commentCreated(): void
     {
-        $this->createCatalogCommentModalVisible = false;   
-    }   
+        $this->closeCreateCatalogCommentModal();   
+        $this->notifySuccess('Comment has been posted!');
+    } 
+
+    public function catalogUpdated(): void
+    {
+        $this->closeUpdateCatalogModal();
+        $this->notifySuccess('Catalog Updated!');
+    }
+
+    public function resourceUpdated(): void
+    {
+        $this->closeUpdateResourceModal();
+        $this->notifySuccess('Resource updated!');
+    }
+
+    public function resourceDeleted(): void
+    {
+        $this->closeDeleteResourceModal();
+        $this->notifySuccess('Resource deleted!');
+    }
+
+    public function catalogDeleted(): void
+    {
+        $this->closeDeleteCatalogModal();
+        $this->notifySuccess('Catalog deleted!');
+    }
+
+    public function resourceCreated(): void
+    {
+        $this->closeCreateCatalogResourceModal();
+        $this->notifySuccess('Resource created!');
+    }
+
 }

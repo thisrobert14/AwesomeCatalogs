@@ -34,7 +34,7 @@ class CreateCatalogResourceModal extends Component
             author: auth()->user(),
         ));
 
-        $this->emit('catalogResourceCreated');
+        $this->emit('resourceCreated');
     }
 
     public function rules(): array

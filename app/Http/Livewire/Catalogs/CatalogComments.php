@@ -17,6 +17,8 @@ class CatalogComments extends Component
     protected $listeners = [
         'closeDeleteCatalogCommentModal' => 'closeDeleteCatalogCommentModal',
         'closeUpdateCatalogCommentModal' => 'closeUpdateCatalogCommentModal',
+        'commentUpdated' => 'commentUpdated',
+        'commentDeleted' => 'commentDeleted',
     ];
 
     public function mount(Catalog $catalog)
@@ -49,5 +51,17 @@ class CatalogComments extends Component
     public function closeUpdateCatalogCommentModal(): void
     {
         $this->commentToBeUpdated =  null;
+    }
+
+    public function commentUpdated(): void
+    {
+        $this->closeUpdateCatalogCommentModal();
+        $this->notifySuccess('Comment updated!');
+    }
+
+    public function commentDeleted(): void
+    {
+        $this->closeDeleteCatalogCommentModal();
+        $this->notifySuccess('Comment deleted!');
     }
 }

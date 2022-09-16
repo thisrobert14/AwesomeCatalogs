@@ -42,7 +42,7 @@ class UpdateResourceModal extends Component
             author: auth()->user()
         ));
 
-        $this->emit('closeUpdateResourceModal');
+        $this->emit('resourceUpdated');
     }
 
     public function rules(): array

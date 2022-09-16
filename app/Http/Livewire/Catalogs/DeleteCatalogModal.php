@@ -31,7 +31,7 @@ class DeleteCatalogModal extends Component
     public function deleteCatalog()
     {
         resolve(DeleteCatalogAction::class)->delete($this->catalog);
-
+        $this->emit('catalogDeleted');
         return redirect()->route('show.catalogs');
     }
 }

@@ -39,7 +39,7 @@ class UpdateResourceCommentModal extends Component
         ));
 
         $this->emit('closeUpdateResourceCommentModal');
-        return redirect()->back();
+        $this->notifySuccess('Comment updated!');
     }
 
     public function rules(): array

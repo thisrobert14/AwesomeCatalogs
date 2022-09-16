@@ -1,0 +1,4 @@
+@props(['disabled' => false, 'enabled'])
+<button {{ $disabled ? 'disabled' : '' }} {{ $attributes->merge(['type' => 'button', 'class' => 'relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none ' . ($enabled ? 'bg-blue-600 text-white hover:bg-blue-700' : 'bg-gray-200 text-gray-600 hover:bg-blue-100 hover:text-blue-800')]) }}>
+    <span aria-hidden="true" class="{{ ($enabled ? 'translate-x-5' : 'translate-x-0') . ' inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200' }}"></span>
+</button>

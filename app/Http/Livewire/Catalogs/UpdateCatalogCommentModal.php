@@ -38,7 +38,7 @@ class UpdateCatalogCommentModal extends Component
             owner: auth()->user()
         ));
 
-        $this->emit('closeUpdateCatalogCommentModal');
+        $this->emit('commentUpdated');
     }
 
 

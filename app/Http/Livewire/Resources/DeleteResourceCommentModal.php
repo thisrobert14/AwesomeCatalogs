@@ -30,7 +30,7 @@ class DeleteResourceCommentModal extends Component
     public function deleteResourceComment()
     {
         resolve(DeleteResourceCommentAction::class)->delete($this->comment);
-        $this->emit('closeDeleteResourceCommentModal');
+        $this->emit('commentDeleted');
     }
 
     public function showRemoveResourceCommentModal(): void

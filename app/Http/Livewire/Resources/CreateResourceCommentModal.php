@@ -37,7 +37,7 @@ class CreateResourceCommentModal extends Component
            owner: auth()->user(),
         ));
 
-        $this->emit('closeCreateResourceCommentModal');
+        $this->emit('commentPosted');
     }
 
     public function rules(): array

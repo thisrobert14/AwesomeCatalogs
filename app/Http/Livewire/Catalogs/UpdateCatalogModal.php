@@ -46,7 +46,8 @@ class UpdateCatalogModal extends Component
             photo: $this->photo ? $this->photo->store('photos', 'public') : $imageToShow
         ));
 
-        $this->emit('closeUpdateCatalogModal');
+        $this->emit('catalogUpdated');
+
     }
 
     public function rules(): array

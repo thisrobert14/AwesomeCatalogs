@@ -25,7 +25,14 @@
                 <x-input-error class="mt-1" for="description" description="Write something about it." />
               </div>
 
-              <div class="mt-4">
+              <div 
+              x-data="{ isUploading: false, progress: 0 }"
+              x-on:livewire-upload-start="isUploading = true"
+              x-on:livewire-upload-finish="isUploading = false"
+              x-on:livewire-upload-error="isUploading = false"
+              x-on:livewire-upload-progress="progress = $event.detail.progress"
+
+              class="mt-4">
               <input type="file" wire:model.defer="photo">
               @if ($photo)
               <img src="{{ $photo->temporaryUrl() }}" alt="temp" class="h-24 w-1/4 rounded-xl">
@@ -33,6 +40,10 @@
               <img src="/storage/{{ $catalog->photo }}" alt="" class="h-24 w-1/4 rounded-xl">
               @endif
               <x-input-error class="mt-1" for="photo" />
+              <!-- Progress Bar -->
+                <div x-show="isUploading">
+                    <progress max="100" x-bind:value="progress"></progress>
+                </div>
               </div>
              
             </div>
