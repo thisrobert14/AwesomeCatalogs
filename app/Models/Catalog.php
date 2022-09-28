@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Comment;
 use App\Models\Resource;
 use App\Models\CatalogUserStar;
+use App\Enums\CatalogCategoryEnum;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -15,9 +16,27 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Catalog extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
+
+    protected $casts = [
+        'category' => CatalogCategoryEnum::class,
+    ];
 
     protected $guarded = [];
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
 
     public function author(): BelongsTo
     {

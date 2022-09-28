@@ -5,6 +5,8 @@ namespace App\Http\Livewire\Catalogs;
 use App\Models\Photo;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Validation\Rule;
+use App\Enums\CatalogCategoryEnum;
 use App\DataTransferObjects\CatalogData;
 use App\DataTransferObjects\ResourceData;
 use App\Actions\Catalog\CreateCatalogAction;
@@ -24,9 +26,18 @@ class CreateCatalogModal extends Component
 
     public $photo;
 
+    public $catalogCategory;
+
+    public function mount()
+    {
+        $this->catalogCategory = CatalogCategoryEnum::SOFTWARE->value;
+    }
+
     public function render()
     {
-        return view('livewire.catalogs.create-catalog-modal');
+        return view('livewire.catalogs.create-catalog-modal', [
+            'catalogCategories' => CatalogCategoryEnum::cases()
+        ]);
     }
 
     public function createCatalog()
@@ -37,7 +48,8 @@ class CreateCatalogModal extends Component
             title: $this->title,
             description: $this->description,
             author: auth()->user(),
-            photo: $this->photo ? $this->photo->store('photos', 'public') : null
+            photo: $this->photo ? $this->photo->store('photos', 'public') : null,
+            category: CatalogCategoryEnum::from($this->catalogCategory)
         ));
 
         $resource = resolve(CreateResourceAction::class)->create(new ResourceData(

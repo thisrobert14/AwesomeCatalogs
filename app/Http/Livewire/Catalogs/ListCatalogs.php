@@ -4,9 +4,11 @@ namespace App\Http\Livewire\Catalogs;
 
 use App\Models\Catalog;
 use Livewire\Component;
+use App\Enums\CatalogCategoryEnum;
 
 class ListCatalogs extends Component
 {
+    public $category;
 
     public bool $createCatalogModalVisible = false;
 
@@ -17,8 +19,15 @@ class ListCatalogs extends Component
 
     public function render()
     {
+        $categories = CatalogCategoryEnum::cases();
+
         return view('livewire.catalogs.list-catalogs', [
             'catalogs' => Catalog::all()->sortByDesc('created_at')
+                ->when($this->category && $this->category != 'All categories', function ($query) use 
+                    ($categories)  {
+                        return $query->where('category', CatalogCategoryEnum::from($this->category));
+                    }),
+            'categories' => $categories
         ]);
     }
 

@@ -64,10 +64,20 @@
               </div>
 
               <div class="mt-4">
+                 <select id="catalog-category" wire:model="catalogCategory" class="mt-1 px-2 py-2 bg-gray-50 rounded-md w-26">
+                    @foreach ($catalogCategories as $catalogCategory)
+                      <option class="w-full" value="{{ $catalogCategory->value }}">{{ $catalogCategory->value }}</option>
+                    @endforeach
+                  </select>
+                <x-input-error class="mt-1" for="catalogCategory" description="Select the channel type." />
+            </div>
+
+              <div class="mt-4">
               <input type="file" wire:model="photo">
               <x-input-error class="mt-1" for="photo" />
               </div>
-            </div>
+
+              
           </div>
         </div>
         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">

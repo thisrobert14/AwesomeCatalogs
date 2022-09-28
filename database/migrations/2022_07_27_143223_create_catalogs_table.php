@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('photo')->nullable();
             $table->text('description');
+            $table->string('slug')->nullable();
+            $table->string('category');
             $table->timestamps();
 
             $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');

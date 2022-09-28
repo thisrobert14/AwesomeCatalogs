@@ -1,7 +1,23 @@
 <div class="px-4 sm:px-6 lg:px-8">
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-xl font-semibold text-blue-900">Catalogs</h1>
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-4">
+        <h1 class="text-xl font-semibold text-blue-900">Catalogs</h1>
+        @livewire('catalogs.search-bar')
+
+        <div>
+          <select wire:model="category" id="location" name="location" class="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+            <option value="All categories" selected>All categories</option>
+            @foreach($categories as $category)
+            <option value="{{ $category->value }}">{{ $category->name }}</option>
+            @endforeach
+          </select>
+        </div>
+
+        </div>
+           
+  </div>
       <p class="mt-2 text-sm text-gray-700">A list of all catalogs in our site including their author and title, check them out.</p>
     </div>
     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
@@ -47,7 +63,7 @@
 
             <tbody class="divide-y divide-gray-200 bg-white">
               <tr>
-                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm  font-medium text-gray-900  sm:pl-6"><a href="{{ route('show.catalog', ['catalog' => $catalog->id]) }}" class="rounded-xl hover:bg-gray-100 px-2 py-2">{{ ucfirst($catalog->title)}}</a></td>
+                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm items-center font-medium text-gray-900  sm:pl-6"><a href="{{ route('show.catalog', ['catalog' => $catalog->slug]) }}" class="rounded-xl hover:bg-gray-100 px-2 py-2">{{ ucfirst($catalog->title)}}</a> <span class="text-xs text-white px-1 py-1 bg-blue-300 rounded-md ">{{ $catalog->category->value }}</span></td>
                 @if(auth()->user() == $catalog->author)
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-indigo-600">You</td>
                 @else
@@ -67,5 +83,4 @@
     @livewire('catalogs.create-catalog-modal')
   @endif
 </div>
-
 

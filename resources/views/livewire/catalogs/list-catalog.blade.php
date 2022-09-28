@@ -98,7 +98,7 @@
             <tbody>
                 <tr>
                     <td class="relative py-4 pl-4 sm:pl-6  pr-3 text-sm">
-                       <a href="{{ route('show.resource', ['resource' => $resource->id]) }}"><div class="font-medium text-gray-900">{{ $resource->title }}</div></a>
+                       <a href="{{ route('show.resource', ['resource' => $resource]) }}"><div class="font-medium text-gray-900">{{ $resource->title }}</div></a>
                     </td>
                     <td class="hidden px-3 py-3.5 text-sm text-gray-500 lg:table-cell">{{ $resource->description }}</td>
                     @if(auth()->user()->id == $catalog->author->id)
@@ -113,7 +113,7 @@
                         type="button" class="inline-flex items-center rounded-md border border-gray-300 bg-red-400 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Delete</button>
                     </td>
                     @endif
-                    <a href="{{ route('show.resource', ['resource' => $resource->id]) }}"><td class="hidden cursor-pointer hover:text-gray-700 px-3 py-3.5 text-sm text-gray-500 lg:table-cell">{{ $resource->comments()->count() }} comments</td></a>
+                    <a href="{{ route('show.resource', ['resource' => $resource]) }}"><td class="hidden cursor-pointer hover:text-gray-700 px-3 py-3.5 text-sm text-gray-500 lg:table-cell">{{ $resource->comments()->count() }} comments</td></a>
                 </tr>
             </tbody>
             @endforeach
@@ -137,7 +137,7 @@
             @endif
 
     @if($catalog->comments->count() < 1)
-        <h1 class="mt-10 text-xl bg-red-50 px-2 py-2 rounded-md font-semibold text-gray-500 w-3/4">There are no comments for this catalog now. Be the first person who post one!</h1>
+        <h1 class="mt-10 text-xl  font-semibold text-gray-500 w-3/4">There are no comments for this catalog now. Be the first person who post one!</h1>
     @else
         @livewire('catalogs.catalog-comments', [
             'catalog' => $catalog,

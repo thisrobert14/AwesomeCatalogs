@@ -14,6 +14,7 @@ class CreateCatalogAction
         $catalog->description = $data->description;
         $catalog->author()->associate($data->author);        
         $catalog->photo = $data->photo;
+        $catalog->category = $data->category;
 
         $catalog->save();
 

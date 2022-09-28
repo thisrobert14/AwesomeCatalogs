@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('catalog_id');
             $table->string('title');
             $table->text('description');
+            $table->string('slug')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

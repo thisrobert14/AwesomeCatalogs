@@ -24,11 +24,11 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('catalogs')->group(function () {
         Route::get('/', [CatalogsController::class, 'listCatalogs'])->name('show.catalogs');
         Route::get('/individual', [CatalogsController::class, 'listIndividualCatalogs'])->name('show.individual-catalogs');
-        Route::get('/{catalog}', [CatalogsController::class, 'listCatalog'])->name('show.catalog');
+        Route::get('/{catalog:slug}', [CatalogsController::class, 'listCatalog'])->name('show.catalog');
     });
     Route::prefix('resources')->group(function () {
-        Route::get('/{resource}', [ResourcesController::class, 'listResource'])->name('show.resource');
-        Route::get('/{resource}/comments/{comment}', [ResourcesController::class, 'listResourceComments'])->name('show.resource-comments');
+        Route::get('/{resource:slug}', [ResourcesController::class, 'listResource'])->name('show.resource');
+        // Route::get('/{resource:slug}/comments/{comment}', [ResourcesController::class, 'listResourceComments'])->name('show.resource-comments');
     });
 });
 
